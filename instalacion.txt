@@ -1,0 +1,61 @@
+
+Paso 1 : Instalacion de DB PostgreSql.
+         
+         apt-get install postgresql -y
+
+         Comandos basicos Postgresql :
+         - Version : psql -V
+
+           Para ingresar a la BBDD ,  desde el terminal como root. 
+         - sudo -u postgres psql
+
+         - Para salir de la BBDD : Control + z.
+
+Paso 2 : Instalacion del codigo fuente de Odoo.
+
+         Paso 2.1 : Instalacion del Repositorio de Odoo en nuestro source.list de nuestro  server.
+
+                    Paso 2.1.1 : Agregar la llave (key) del repositorio Odoo . Esto sirve para que nuestro server tenga la certeza de que el repositorio es de buena fuente y nuestro server no lo rechaze.
+
+                    wget -O - https://nightly.odoo.com/odoo.key | apt-key add -
+
+                    Paso 2.1.2 : Agregar el repositorio y actualizarlo de Odoo a nuestra carpeta  "/etc/apt/sources.list.d"
+
+                    - echo "deb http://nightly.odoo.com/11.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo.list
+                    - apt-get update
+
+                    Paso 2.1.3 : Una vez agregado el repositorio ya seremos capaces de instalar el codigo fuente.
+
+                     
+                     - apt-get install odoo
+
+                    Paso 2.1.4 ( opcional ): Actualizar los paquetes del sistema 
+
+                    apt-get upgrade
+
+Paso 3 : Instalar librerias adicionales para darle mas funcionalidades a Odoo.
+
+        Antes : Instalar el gestor de dependencias para Python PIP.
+
+                apt install python3-pip
+
+        - pip3 install vobject qrcode  (Usado en calendarios para producir files ical)
+
+        - apt install libldap2-dev libsasl2-dev ( Usado para autenticar usuarios con LDAP)
+
+        - pip3 install pyldap ( Usado por el driver del sistema para ESC/POS)
+
+        - pip3 install num2words (La libreria numwords )
+       
+       Nota : Para los reportes en PDF en necesario instalar la aplicacion  "wkhtmltopdf" , ingresar a la pagina oficial y descargar segun la arquitectura y la distro del server.
+
+       Paginas oficial : https://wkhtmltopdf.org/downloads.html
+
+Paso 4 : Ingresar a la web de Odoo instalada y crear la BBDD desde la web.
+
+         http://localhost:8069  
+
+
+          
+
+
